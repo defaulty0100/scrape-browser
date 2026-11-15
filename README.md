@@ -95,4 +95,4 @@ Measured on a running session with tabs open, summed over the process group:
 | shell `scrape.exe` | ~70 MB | ~50 MB |
 | WebView2 children, 6 processes | ~80 MB | ~70 MB |
 
-The shell alone stays under 100 MB of private bytes — that is the row Task Manager shows for `scrape`. The browser as a whole is about four times that, because every page is Chromium in its own processes; the shell cannot shrink that. Cutting total memory means either unloading pages more aggressively (`scrape.tabs.memory_limit_mb`) or dropping Chromium for an engine that paints into a CPU screenshot (Obscura), which loses interactive rendering.
+The shell alone stays under 100 MB of private bytes — that is the row Task Manager shows for `scrape`. 
