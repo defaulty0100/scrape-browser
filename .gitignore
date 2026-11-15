@@ -1,0 +1,5 @@
+/target
+*.exe
+*.pdb
+*.WebView2/
+config.json
