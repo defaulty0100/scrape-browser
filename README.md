@@ -90,9 +90,12 @@ Then that tab's page is destroyed (url and title stay; it loads again on activat
 
 ## Memory (release, Windows 11)
 
+Measured on a running session with tabs open, summed over the process group:
+
 | | Working set | Private |
 |---|---|---|
-| shell `scrape.exe` | ~106 MB | ~47 MB |
-| WebView2, `about:blank` | +296 MB | +137 MB |
+| shell `scrape.exe` | ~125 MB | ~70 MB |
+| WebView2 children, 6 processes | ~290 MB | ~165 MB |
+| whole browser | ~415 MB | ~235 MB |
 
-The "<100 MB on an empty page" goal is unreachable on WebView2: it is Chromium in separate processes. That would need an engine without Chromium (Obscura paints the page into a CPU screenshot, but without interactive rendering).
+The shell alone stays under 100 MB of private bytes — that is the row Task Manager shows for `scrape`. The browser as a whole is about four times that, because every page is Chromium in its own processes; the shell cannot shrink that. Cutting total memory means either unloading pages more aggressively (`scrape.tabs.memory_limit_mb`) or dropping Chromium for an engine that paints into a CPU screenshot (Obscura), which loses interactive rendering.
