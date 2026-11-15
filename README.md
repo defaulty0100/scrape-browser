@@ -2,8 +2,6 @@
 
 A minimal Rust browser: a Material You shell in egui, pages rendered by WebView2 (Chromium) inside the window.
 
-[![Promo video](docs/poster.png)](docs/scrape-promo.mp4)
-
 ```powershell
 cargo run --release
 ```
